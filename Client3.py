@@ -1,0 +1,23 @@
+import socket
+s = socket.socket()
+host=socket.gethostname()
+port = 8080
+s.connect((host,port))
+print("Connected to the server")
+message = s.recv(1024)
+message = message.decode()
+print("Server Message:",message)
+while 1:
+	message = s.recv(1024)
+	message = message.decode()
+	print("Server: ",message)
+	message = s.recv(1024)
+	message = message.decode()
+	print("Client 1: ",message)
+	message = s.recv(1024)
+	message = message.decode()
+	print("Client 2: ",message)
+	new_message = input(str("Type a message"))
+	new_messaage = new_message.encode()
+	s.send(new_message)
+	print("Message sent")
